@@ -8,12 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var moveDistance: CGFloat = 0
+    @State var flag = true
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+          Rectangle()
+                .foregroundColor(Color.yellow)
+                .frame(width: 250, height: 150)
+                .offset(y: moveDistance)
+                .animation(.default, value: flag)
+            
+            Button("Animate") {
+                if flag {
+                    moveDistance -= 175
+                    flag = false
+                } else {
+                    moveDistance += 175
+                    flag = true
+                }
+            }
         }
         .padding()
     }
